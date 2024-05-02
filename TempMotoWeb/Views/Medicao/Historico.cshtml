@@ -1,0 +1,230 @@
+﻿@model IEnumerable<TempMotoWeb.Models.Medicao>
+
+@{
+    ViewData["Title"] = "Lista";
+}
+
+@section Scripts{
+    <meta http-equiv="refresh" content="300" />
+}
+
+<h1 style="color:#3217ea;">Tela inicial - Painel de controle</h1>
+
+<style>
+
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .termometro {
+        width: 50px;
+        height: 300px;
+        background-color: #ccc;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid;
+    }
+
+    .mercurio {
+        width: 100%;
+        background-color: #00f;
+        position: absolute;
+        bottom: 0;
+        transition: height 0.5s ease;
+    }
+
+    .temperatura {
+        font-size: 20px;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #000;
+    }
+
+    .valor-temperatura {
+        margin-top: 10px;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        font-size: 18px;
+        border: 1px solid;
+        background-color: #ccc;
+    }
+
+    .ph-barra {
+        width: 300px;
+        height: 30px;
+        background-color: #ccc;
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        border: 1px solid;
+    }
+
+    .ph-valor {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: width 0.5s ease;
+    }
+
+    .ph-indicador {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .ph-box {
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background-color: #ccc;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 10px;
+    }
+</style>
+
+<!--<p>
+    <a asp-action="Create">Create New</a>
+</p>-->
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Ph)</th>
+            <th>@Html.DisplayNameFor(model => model.Temperatura)</th>
+            <th>@Html.DisplayNameFor(model => model.Data_Medicao)</th>
+        </tr>
+        <tr>
+            <th> 
+                <table>
+                    <tr>
+                        <th>
+                            <div class="ph-barra">
+                                <div class="ph-valor" id="ph-valor" style="width: 50%;"></div>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <div class="ph-indicador">
+                                <span class="ph-box" id="ph-texto"></span>
+                            </div>
+                            <!--<div class="ph-box" id="ph-classificacao">
+                            </div>-->
+                        </th>
+                    </tr>
+                </table>
+            </th>
+            <th>
+                
+                <div class="container">
+                    <div class="termometro">
+                        <div class="mercurio" id="mercurio" style="height: 50%;"></div>
+                    </div>
+
+                    <div class="valor-temperatura" id="valor-temperatura"></div>
+                </div>
+            </th>
+            </th>
+            <!-- <th>
+                @Html.DisplayNameFor(model => model.Data_Medicao)
+            </th>-->
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ph)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Temperatura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Data_Medicao)
+            </td>
+            <td>
+                <!--<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |-->
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                <!--< a asp - action = "Delete" asp - route - id = "@item.Id" >| Delete </ a >-->
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+<script>
+    function atualizarTemperatura(temperatura) {
+        const mercurio = document.getElementById('mercurio');
+        const temperaturaExibida = document.getElementById('temperatura');
+        const valorTemperatura = document.getElementById('valor-temperatura');
+
+        //temperaturaExibida.textContent = temperatura.toFixed(1) + '°C';
+        valorTemperatura.textContent = temperatura.toFixed(1) + '°C';
+
+        if (temperatura < 20) {
+            mercurio.style.backgroundColor = '#00f';
+        } else if (temperatura === 20) {
+            mercurio.style.backgroundColor = '#ff0';
+        } else if (temperatura <= 27) {
+            mercurio.style.backgroundColor = '#ff0';
+        } else {
+            mercurio.style.backgroundColor = '#f00';
+        }
+
+        //mercurio.style.height = ((temperatura - 20) / 10) * 100 + '%';
+    }
+
+    // Exemplo: atualize a temperatura
+    const temperaturaAtual = 2; // Insira a temperatura atual aqui
+    atualizarTemperatura(temperaturaAtual);
+    }
+
+    function atualizarPh(ph) {
+        const phValor = document.getElementById('ph-valor');
+        const phTexto = document.getElementById('ph-texto');
+        const phClassificacao = document.getElementById('ph-classificacao');
+
+        phTexto.textContent = '';
+
+        if (ph < 0) {
+            ph = 0;
+        } else if (ph > 14) {
+            ph = 14;
+        }
+
+        phValor.style.width = ((ph / 14) * 100) + '%';
+
+        if (ph >= 0 && ph <= 6) {
+            phValor.style.backgroundColor = '#ff0000';
+            //phTexto.textContent = 'Ácido (' + ph + ')';
+            phClassificacao.textContent = 'Ácido (pH ' + ph + ')';
+        } else if (ph === 7) {
+            phValor.style.backgroundColor = '#0d6007';
+            //phTexto.textContent = 'Ideal (7)';
+            phClassificacao.textContent = 'Ideal (pH ' + ph + ')';
+        } else {
+            phValor.style.backgroundColor = '#084005';
+            //phTexto.textContent = 'Alcalino (' + ph + ')';
+            phClassificacao.textContent = 'Alcalino (pH ' + ph + ')';
+        }
+    }
+
+    // Exemplo: atualize o valor do pH
+   const phAtual = 9; // Insira o valor do pH atual aqui
+        atualizarPh(phAtual);
+
+</script>
