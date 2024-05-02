@@ -3,7 +3,6 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TempMotoWeb.Data;
 
@@ -11,12 +10,10 @@ using TempMotoWeb.Data;
 
 namespace TempMotoWeb.Migrations
 {
-    [DbContext(typeof(TempMotoWebContext))]
-    [Migration("20230926045556_MudarHora")]
-    partial class MudarHora
+    [DbContext(typeof(AquaContext))]
+    partial class AquaContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -33,28 +30,13 @@ namespace TempMotoWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<float>("Altitude")
-                        .HasColumnType("real");
-
                     b.Property<DateTime?>("Data_Medicao")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Num_Satelites")
-                        .HasColumnType("int");
+                    b.Property<float>("Ph")
+                        .HasColumnType("real");
 
                     b.Property<float>("Temperatura")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Umidade")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Velocidade")
                         .HasColumnType("real");
 
                     b.HasKey("Id");

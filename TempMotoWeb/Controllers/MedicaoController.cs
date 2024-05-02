@@ -14,9 +14,9 @@ namespace TempMotoWeb.Controllers
 {
     public class MedicaoController : Controller
     {
-        private readonly TempMotoWebContext _context;
+        private readonly AquaContext _context;
 
-        public MedicaoController(TempMotoWebContext context)
+        public MedicaoController(AquaContext context)
         {
             _context = context;
         }

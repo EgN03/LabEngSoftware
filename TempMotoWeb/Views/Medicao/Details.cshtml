@@ -3,15 +3,6 @@
 @{
     ViewData["Title"] = "Detalhes";
 }
-@section Header{
-    <link rel="stylesheet" type="text/css" href="~/css/google.css" />
-    <script src="~/js/google.js"></script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script>
-        (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })
-            ({ key: mapsKey, v: "beta"});
-    </script>
-}
 
 <h1>Detalhes</h1>
 
@@ -21,28 +12,10 @@
     <div class="row">
         <dl class="col-md-6">
             <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.endereco)
+                @Html.DisplayNameFor(model => model.Ph)
             </dt>
             <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.endereco)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Latitude)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Latitude)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Longitude)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Longitude)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Altitude)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Altitude)
+                @Html.DisplayFor(model => model.Ph)
             </dd>
             </dl>
             <dl class="col-md-6">
@@ -51,24 +24,6 @@
             </dt>
             <dd class = "col-sm-10">
                 @Html.DisplayFor(model => model.Temperatura)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Umidade)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Umidade)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Num_Satelites)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Num_Satelites)
-            </dd>
-            <dt class = "col-sm-2">
-                @Html.DisplayNameFor(model => model.Velocidade)
-            </dt>
-            <dd class = "col-sm-10">
-                @Html.DisplayFor(model => model.Velocidade)
             </dd>
             <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.Data_Medicao)
@@ -83,11 +38,3 @@
     <!--<a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |-->
     <a asp-action="Index" class="btn btn-primary">Voltar</a>
 </div>
-<br/>
-<div class="row">
-    <div id="map"></div>
-</div>
-
-<script>
-    initMap(@Model?.Latitude.ToString(), @Model?.Longitude.ToString());
-</script>

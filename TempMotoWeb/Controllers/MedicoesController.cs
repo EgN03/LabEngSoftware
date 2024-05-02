@@ -18,24 +18,11 @@ namespace TempMotoWeb.Controllers
     [ApiController]
     public class MedicoesController : ControllerBase
     {
-        private readonly TempMotoWebContext _context;
+        private readonly AquaContext _context;
 
-        public MedicoesController(TempMotoWebContext context)
+        public MedicoesController(AquaContext context)
         {
             _context = context;
-        }
-        // GET: api/<ApiController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
-        // GET api/<ApiController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
         }
 
         // POST api/<ApiController>
@@ -44,33 +31,6 @@ namespace TempMotoWeb.Controllers
         {
             try
             {
-                string url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + medicao.Latitude.ToString().Replace(',', '.') + "," + medicao.Longitude.ToString().Replace(',', '.') + "&result_type=street_address|country&key=" + Environment.GetEnvironmentVariable("apiKey");
-                HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri(url);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(
-                    new MediaTypeWithQualityHeaderValue("application/json"));
-
-                HttpResponseMessage response = await client.GetAsync("");
-                Console.WriteLine(response);
-                if (response.IsSuccessStatusCode)
-                {
-                    var resp = JObject.Parse(response.Content.ReadAsStringAsync().Result);
-                    try
-                    {
-                        medicao.endereco = (resp["results"][0]["formatted_address"].ToString());
-                    }
-                    catch (Exception e)
-                    {
-                        medicao.endereco = null;
-                    }
-                }
-                else
-                {
-                    return Results.Problem("endereço não localizado");
-                }
-
-
                 _context.Medicao.Add(medicao);
                 await _context.SaveChangesAsync();
 
@@ -109,12 +69,6 @@ namespace TempMotoWeb.Controllers
             }*/
 
             return list;
-        }
-
-        // PUT api/<ApiController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
         }
 
         // DELETE api/<ApiController>/5

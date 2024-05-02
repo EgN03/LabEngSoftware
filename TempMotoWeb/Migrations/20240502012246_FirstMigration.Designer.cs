@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TempMotoWeb.Data;
 
@@ -10,10 +11,12 @@ using TempMotoWeb.Data;
 
 namespace TempMotoWeb.Migrations
 {
-    [DbContext(typeof(TempMotoWebContext))]
-    partial class TempMotoWebContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AquaContext))]
+    [Migration("20240502012246_FirstMigration")]
+    partial class FirstMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -30,36 +33,18 @@ namespace TempMotoWeb.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<float>("Altitude")
-                        .HasColumnType("real");
-
                     b.Property<DateTime?>("Data_Medicao")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("Latitude")
-                        .HasColumnType("float");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("float");
-
-                    b.Property<int>("Num_Satelites")
-                        .HasColumnType("int");
+                    b.Property<float>("Ph")
+                        .HasColumnType("real");
 
                     b.Property<float>("Temperatura")
                         .HasColumnType("real");
 
-                    b.Property<float>("Umidade")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Velocidade")
-                        .HasColumnType("real");
-
-                    b.Property<string>("endereco")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Medicao", (string)null);
+                    b.ToTable("Medicao");
                 });
 #pragma warning restore 612, 618
         }

@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using TempMotoWeb.Data;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<TempMotoWebContext>(options =>
+builder.Services.AddDbContext<AquaContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("TempMotoWebContext") ?? throw new InvalidOperationException("Connection string 'TempMotoWebContext' not found.")));
 
 // Add services to the container.

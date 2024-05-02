@@ -17,16 +17,11 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.endereco)
+                @Html.DisplayNameFor(model => model.Ph)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Temperatura)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Umidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Velocidade)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Data_Medicao)
@@ -38,16 +33,10 @@
 @foreach (var item in Model) {
             <tr>
             <td>
-                    @(item.endereco != null ? @Html.DisplayFor(modelItem => item.endereco) : @Html.Raw("lat: " + item.Latitude + " long: " + item.Longitude))
+                    @Html.DisplayFor(modelItem => item.Ph)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Temperatura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Umidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Velocidade)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Data_Medicao)

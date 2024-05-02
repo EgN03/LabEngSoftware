@@ -35,7 +35,7 @@
             <!--<select id="selected" name="selected" multiple class="form-select form-select-sm" aria-label="multiple select example">
                 @foreach (var item in Model)
                 {
-                    <option value="@item.Id">@(item.endereco?? item.Data_Medicao.ToString()) </option>
+                    <option value="@item.Id">@(item.Ph.ToString()?? item.Data_Medicao.ToString()) </option>
                 }
             </select>-->
             <div id="map" style="height: 500px;"></div>

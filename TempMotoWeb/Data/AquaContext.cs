@@ -7,13 +7,13 @@ using TempMotoWeb.Models;
 
 namespace TempMotoWeb.Data
 {
-    public class TempMotoWebContext : DbContext
+    public class AquaContext : DbContext
     {
-        public TempMotoWebContext (DbContextOptions<TempMotoWebContext> options)
+        public AquaContext (DbContextOptions<AquaContext> options)
             : base(options)
         {
         }
 
-        public DbSet<TempMotoWeb.Models.Medicao> Medicao { get; set; } = default!;
+        public DbSet<Medicao> Medicao { get; set; } = default!;
     }
 }
