@@ -8,6 +8,89 @@
     <meta http-equiv="refresh" content="300" />
 }
 
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .termometro {
+        width: 50px;
+        height: 300px;
+        background-color: #ccc;
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid;
+    }
+
+    .mercurio {
+        width: 100%;
+        background-color: #00f;
+        position: absolute;
+        bottom: 0;
+        transition: height 0.5s ease;
+    }
+
+    .temperatura {
+        font-size: 20px;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #000;
+    }
+
+    .valor-temperatura {
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background-color: #ccc;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 10px;
+    }
+
+    .ph-barra {
+        width: 300px;
+        height: 30px;
+        background-color: #ccc;
+        position: relative;
+        border-radius: 5px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        border: 1px solid;
+    }
+
+    .ph-valor {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: width 0.5s ease;
+    }
+
+    .ph-indicador {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+
+    .ph-box {
+        width: 200px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        background-color: #ccc;
+        border: 1px solid;
+        border-radius: 5px;
+        padding: 10px;
+    }
+</style>
 <h1 style="color:#3217ea;">Tela inicial - Painel de controle</h1>
 
 <!--<p>
@@ -17,36 +100,153 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Ph)
+                <h3 style="text-align: center;">&nbsp;&nbsp;&nbsp;Valor do Ph&nbsp;&nbsp;&nbsp;</h3>
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Temperatura)
-            </th>
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Data_Medicao)
-            </th>
-            <th></th>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                <h3 style="text-align: center;">&nbsp;&nbsp;&nbsp;Temperatura&nbsp;&nbsp;&nbsp;</h3>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                <h3 style="text-align: center;">&nbsp;&nbsp;&nbsp;Indicador de limpeza da caixa d'agua&nbsp;&nbsp;&nbsp;</h3>
+            </td>     
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+        <tr>
+            <td style="padding:5px;">   
+                <table>
+                    <tr>
+                        <td>
+                            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+                            <div class="ph-barra">
+                                <div class="ph-valor" id="ph-valor" style="width: 50%;"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        
+                    </tr>
+                </table>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td>               
+                <div class="container">
+                    <div class="termometro">
+                        <div class="mercurio" id="mercurio" style="height: 50%;"></div>
+                    </div>
+
+
+
+            </td>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td> 
+                @Html.DisplayNameFor(model => model.Data_Medicao)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <div class="ph-indicador">
+                    <span id="ph-texto">Neutro (7)</span>
+                </div>
+                <div class="ph-box" id="ph-classificacao">
+                    @Html.DisplayNameFor(model => model.Ph)
+                    &nbsp;
+                    &nbsp;
+                </div>
+            </td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td>
+                <div class="valor-temperatura" id="valor-temperatura">@Html.DisplayNameFor(model => model.Temperatura)°C</div>  
+            </td>
+            <td>&nbsp;&nbsp;&nbsp;</td>
+            <td>@Html.DisplayNameFor(model => model.Data_Medicao)</td>
+        </tr>
+
+
+        @{
+            var ultimoItem = Model.LastOrDefault();
+        }
+          <!--
             <tr>
             <td>
-                    @Html.DisplayFor(modelItem => item.Ph)
+                    @Html.DisplayFor(modelItem => ultimoItem.Ph)
             </td>
+                <th>&nbsp;&nbsp;&nbsp;</th>
             <td>
-                @Html.DisplayFor(modelItem => item.Temperatura)
+                    <div class="valor-temperatura" id="valor-temperatura">@Html.DisplayNameFor(model => model.Temperatura) °C</div>
             </td>
+                <th>&nbsp;&nbsp;&nbsp;</th>
             <td>
-                @Html.DisplayFor(modelItem => item.Data_Medicao)
+                    @Html.DisplayFor(modelItem => ultimoItem.Data_Medicao)
             </td>
-            <td>
-                <!--<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |-->
-                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
-                <!--< a asp - action = "Delete" asp - route - id = "@item.Id" >| Delete </ a >-->
-            </td>
-        </tr>
-}
+            
+                    <!--<a asp-action="Edit" asp-route-id="@ultimoItem.Id">Edit</a> |-->
+                    <!--   <a class="btn btn-primary" asp-action="Details" asp-route-id="@ultimoItem.Id">Detalhes</a>-->
+                    <!--< a asp - action = "Delete" asp - route - id = "@ultimoItem.Id" >| Delete </ a >-->
+        <!-- </tr>-->
+           
     </tbody>
 </table>
+
+
+
+<script>
+    function atualizarTemperatura(temperatura) {
+        const mercurio = document.getElementById('mercurio');
+        const temperaturaExibida = document.getElementById('temperatura');
+        const valorTemperatura = document.getElementById('valor-temperatura');
+
+        //temperaturaExibida.textContent = temperatura.toFixed(1) + '°C';
+        valorTemperatura.textContent = temperatura.toFixed(1) + '°C';
+
+        if (temperatura < 20) {
+            mercurio.style.backgroundColor = '#00f';
+        } else if (temperatura === 20) {
+            mercurio.style.backgroundColor = '#ff0';
+        } else if (temperatura <= 27) {
+            mercurio.style.backgroundColor = '#ff0';
+        } else {
+            mercurio.style.backgroundColor = '#f00';
+        }
+
+        //mercurio.style.height = ((temperatura - 20) / 10) * 100 + '%';
+    }
+
+    function atualizarPh(ph) {
+        const phValor = document.getElementById('ph-valor');
+        const phTexto = document.getElementById('ph-texto');
+        const phClassificacao = document.getElementById('ph-classificacao');
+
+        phTexto.textContent = '';
+
+        if (ph < 0) {
+            ph = 0;
+        } else if (ph > 14) {
+            ph = 14;
+        }
+
+        phValor.style.width = ((ph / 14) * 100) + '%';
+
+        if (ph >= 0 && ph <= 6) {
+            phValor.style.backgroundColor = '#ff0000';
+            //phTexto.textContent = 'Ácido (' + ph + ')';
+            phClassificacao.textContent = 'Ácido (pH ' + ph + ')';
+        } else if (ph === 7) {
+            phValor.style.backgroundColor = '#0d6007';
+            //phTexto.textContent = 'Ideal (7)';
+            phClassificacao.textContent = 'Ideal (pH ' + ph + ')';
+        } else {
+            phValor.style.backgroundColor = '#084005';
+            //phTexto.textContent = 'Alcalino (' + ph + ')';
+            phClassificacao.textContent = 'Alcalino (pH ' + ph + ')';
+        }
+    }
+    // Exemplo: atualize a temperatura
+    const temperaturaAtual = @Html.DisplayFor(modelItem => ultimoItem.Temperatura); // Atual valor da temperatura
+    const phAtual = @Html.DisplayFor(modelItem => ultimoItem.Ph); //Atual valor do ph 
+    atualizarTemperatura(temperaturaAtual);
+    atualizarPh(phAtual);
+</script>
