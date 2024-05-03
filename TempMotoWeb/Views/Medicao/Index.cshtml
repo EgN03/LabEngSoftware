@@ -79,6 +79,7 @@
     .ph-indicador {
         text-align: center;
         font-size: 16px;
+        padding: 10px;
         margin-top: 10px;
     }
 
@@ -100,11 +101,11 @@
 <table class="table">
     <thead>
         <tr>
-            <th>&nbsp;&nbsp;&nbsp; @Html.DisplayNameFor(model => model.Ph)&nbsp;&nbsp;&nbsp</th>
+            <th style="text-align: center;font-size: 16px;">&nbsp;&nbsp;&nbsp; Valor do Ph &nbsp;&nbsp;&nbsp</th>
             <th>&nbsp;&nbsp;&nbsp;</th>
-            <th>@Html.DisplayNameFor(model => model.Temperatura)</th>
+            <th style ="text-align: center;font-size: 16px;">Temperatura</th>
             <th>&nbsp;&nbsp;&nbsp;</th>
-            <th>&nbsp;&nbsp;&nbsp;Indicador de limpeza da caixa d'agua&nbsp;&nbsp;&nbsp</th>
+            <th style="text-align: center;font-size: 16px;">&nbsp;&nbsp;&nbsp;Indicador de limpeza da caixa d'agua&nbsp;&nbsp;&nbsp</th>
             
             <!--<th>@Html.DisplayNameFor(model => model.Data_Medicao)</th>-->
         </tr>
@@ -120,9 +121,7 @@
                     </tr>
                     <tr>
                         <th>
-                            <div class="ph-indicador">
-                                <span class="ph-box" id="ph-texto"></span>
-                            </div>
+                            
                             <!--<div class="ph-box" id="ph-classificacao">
                             </div>-->
                         </th>
@@ -132,12 +131,12 @@
             <th>&nbsp;&nbsp;&nbsp;</th>
             <th>
                 
-                <div class="container">
+                <div class="container" style="padding:0px 80px 0px 80px">
                     <div class="termometro">
                         <div class="mercurio" id="mercurio" style="height: 50%;"></div>
                     </div>
 
-                    <div class="valor-temperatura" id="valor-temperatura"></div>
+                    
                 </div>
             </th>
             
@@ -149,24 +148,31 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-            <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ph)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Temperatura)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Data_Medicao)
-            </td>
-            <td>
-                <!--<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |-->
-                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
-                <!--< a asp - action = "Delete" asp - route - id = "@item.Id" >| Delete </ a >-->
-            </td>
-        </tr>
-}
+        @{
+            var ultimoItem = Model.LastOrDefault();
+        }
+        @if (ultimoItem != null){
+            <tr style="border-style:none; border-width:none;">
+                <td>
+                    <div class="ph-indicador">
+                        <span class="ph-valor" id="ph-texto"> @Html.DisplayFor(modelItem => ultimoItem.Ph)</span>
+                    </div>              
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>
+                    <div class="container">
+                        <div class="ph-indicador">
+                            <span class="valor-temperatura" id="valor-temperatura"> @Html.DisplayFor(modelItem => ultimoItem.Temperatura) ºC</span>
+                        </div>
+                    </div>
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+                <td>
+                        <!--@Html.DisplayFor(modelItem => ultimoItem.Data_Medicao)-->
+                </td>
+                <td>&nbsp;&nbsp;&nbsp;</td>
+            </tr>
+        }
     </tbody>
 </table>
 
@@ -195,7 +201,7 @@
     }
 
     // Exemplo: atualize a temperatura
-    const temperaturaAtual = 2; // Insira a temperatura atual aqui
+    const temperaturaAtual = parseFloat('@Html.DisplayFor(modelItem => ultimoItem.Temperatura)'); // Insira a temperatura atual aqui
     atualizarTemperatura(temperaturaAtual);
     }
 
@@ -230,7 +236,7 @@
     }
 
     // Exemplo: atualize o valor do pH
-   const phAtual = 9; // Insira o valor do pH atual aqui
-        atualizarPh(phAtual);
+    const phAtual = 9; // Insira o valor do pH atual aqui
+    atualizarPh(phAtual);
 
 </script>
