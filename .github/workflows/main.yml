@@ -27,7 +27,7 @@ jobs:
       run: dotnet build --configuration Release ./TempMotoWeb/TempMotoWeb.csproj
 
     - name: Executar testes
-      run: dotnet test --configuration Release ./TempMotoWeb.Tests/TempMotoWeb.Tests.csproj
+      run: dotnet test --configuration Release ./TempMotoWeb/TempMotoWeb.csproj
 
     - name: Publicar artefatos
       uses: actions/upload-artifact@v2
