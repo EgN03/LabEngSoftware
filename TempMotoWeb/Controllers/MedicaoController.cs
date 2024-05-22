@@ -170,5 +170,10 @@ namespace TempMotoWeb.Controllers
         {
             return View(await _context.Medicao.ToListAsync());
         }
+
+        public async Task<IActionResult> Docs()
+        {
+            return View(await _context.Medicao.ToListAsync());
+        }
     }
 }
