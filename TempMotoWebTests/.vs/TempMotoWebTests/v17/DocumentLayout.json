@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\enriq\\source\\repos\\LabEng\\LabEngSoftware\\TempMotoWebTests\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{BBC61880-BA1F-4511-B709-943BF167F8F7}|TempMotoWebTests\\TempMotoWebTests.csproj|c:\\users\\enriq\\source\\repos\\labeng\\labengsoftware\\tempmotowebtests\\tempmotowebtests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BBC61880-BA1F-4511-B709-943BF167F8F7}|TempMotoWebTests\\TempMotoWebTests.csproj|solutionrelative:tempmotowebtests\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 216,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "C:\\Users\\enriq\\source\\repos\\LabEng\\LabEngSoftware\\TempMotoWebTests\\TempMotoWebTests\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "TempMotoWebTests\\UnitTest1.cs",
+              "ToolTip": "C:\\Users\\enriq\\source\\repos\\LabEng\\LabEngSoftware\\TempMotoWebTests\\TempMotoWebTests\\UnitTest1.cs",
+              "RelativeToolTip": "TempMotoWebTests\\UnitTest1.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-24T04:45:28.887Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
