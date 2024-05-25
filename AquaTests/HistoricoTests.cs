@@ -15,7 +15,7 @@ namespace historicoNamespace.Tests
             {
                 new TempMotoWeb.Models.Medicao { Id = 1, Ph = 7, Temperatura = 25, Data_Medicao = DateTime.Now },
                 new TempMotoWeb.Models.Medicao { Id = 2, Ph = 6, Temperatura = 30, Data_Medicao = DateTime.Now },
-                // Adicione mais medições simuladas conforme necessário
+                
             };
 
             // Act
@@ -37,7 +37,7 @@ namespace historicoNamespace.Tests
             // Assert
             Assert.AreEqual("Água Boa para Consumo", statusResults[1]);
             Assert.AreEqual("Limpeza Recomendada", statusResults[2]);
-            // Adicione mais verificações para outras medições, se necessário
+            
         }
     }
 }
